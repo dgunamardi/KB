@@ -1,0 +1,7 @@
+
+C:\Users\VR-03\PycharmProjects\AICompetition_NUTSHELL\test.py vs C:\Users\VR-03\PycharmProjects\AICompetition_NUTSHELL\test.py
+p1 0
+p2 0
+p2 passes
+
+
