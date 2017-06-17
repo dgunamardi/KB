@@ -311,14 +311,17 @@ def print_pos(pos, f=sys.stderr, owner_map=None):
     print("\n".join(pretty_board), file=f)
     print('    ' + ' '.join(colstr[:N]), file=f)
     print('', file=f)
+
 def parse_coord(s):
-    if s == 'pass':
-        return None
-    try:
-        res = W+1 + (N - int(s[1:])) * W + colstr.index(s[0].upper())
-    except ValueError:
-        res = "wi"
-    return res
+    if s.strip() == "pass":
+        return "pass"
+    else:
+        try:
+            res = W+1 + (N - int(s[1:])) * W + colstr.index(s[0].upper())
+        except ValueError:
+            res = "wi"
+        return res
+
 def str_coord(c):
     if c is None:
         return 'pass'
@@ -331,22 +334,26 @@ def str_coord(c):
 class Simulation:
     def __init__(self, pos):
         self.pos = pos
+
 def execute(cmd, prog, sim):
     #-- input test (manual input to check rule violation) --
-    sc = raw_input()
+    # sc = raw_input()
 
     #--- program ---
-    # proc = sp.Popen([cmd, prog, sim.pos.board], stdout=sp.PIPE)
-    # sc = proc.stdout.read()
+    proc = sp.Popen([cmd, prog, sim.pos.board], stdout=sp.PIPE)
+    sc = str(proc.stdout.read())
+    # print(sc)
 
     cont = True
     while(cont):
         cont = False
         args = None
 
-        print("player sends: "+ sc)
+        print("player sends: "+ sc.strip())
         c = parse_coord(sc)
-        if c is "wi":
+        if c is "pass":
+            c = -1
+        elif c is "wi":
             # wrong input
             cont = True
             args = "err0"
@@ -362,13 +369,14 @@ def execute(cmd, prog, sim):
             print("checker returns " + args)
 
             # -- program --
-            # proc = sp.Popen([cmd, prog, args], stdout=sp.PIPE)
-            # sc = proc.stdout.read()
+            proc = sp.Popen([cmd, prog, args], stdout=sp.PIPE)
+            sc = str(proc.stdout.read())
+            # print(sc)
 
             # -- manual input to check rule violation --
-            sc = raw_input()
-
+            # sc = raw_input()
     return c
+
 def check(cmd, prog, sim, timeout):
     start = time.time()
 
@@ -421,7 +429,7 @@ def game_io(cmd, prog, timeout):
         # check timeout
         c = check(cmd[index], prog[index], sim, timeout)
 
-        if c is not None:
+        if c > 0:
             # Not a pass
             sim = Simulation(pos=sim.pos.move(c))
 
