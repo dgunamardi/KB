@@ -1,5 +1,17 @@
 
-C:\Users\VR-03\PycharmProjects\AICompetition_NUTSHELL\test.py vs C:\Users\VR-03\PycharmProjects\AICompetition_NUTSHELL\test.py
+D:\KB\KB\CompetitionRunner\Dummy\test.py vs D:\KB\KB\CompetitionRunner\Dummy\test.py
+p1 0
+p2 0
+p2 passes
+
+
+D:\KB\KB\CompetitionRunner\Dummy\test.py vs D:\KB\KB\CompetitionRunner\Dummy\test.py
+p1 0
+p2 0
+p2 passes
+
+
+D:\KB\KB\CompetitionRunner\Dummy\test.py vs D:\KB\KB\CompetitionRunner\Dummy\test.py
 p1 0
 p2 0
 p2 passes

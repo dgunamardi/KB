@@ -35,7 +35,7 @@ def board_put(board, c, p):
 def floodfill(board, c):
     """ replace continuous-color area starting at c with special color # """
     # This is called so much that a bytearray is worthwhile...
-    byteboard = bytearray(board)
+    byteboard = bytearray(board, 'utf8')
     p = byteboard[c]
     byteboard[c] = ord('#')
     fringe = [c]
@@ -291,6 +291,7 @@ def print_board(arr):
             str += arr[i][j]
         str += "\n"
     print(str)
+
 def print_pos(pos, f=sys.stderr, owner_map=None):
     """ print visualization of the given board position, optionally also
     including an owner map statistic (probability of that area of board
@@ -338,13 +339,15 @@ def execute(cmd, prog, sim):
     #--- program ---
     proc = sp.Popen([cmd, prog, sim.pos.board], stdout=sp.PIPE)
     sc = proc.stdout.read()
+    proc.kill()
 
     cont = True
+    c = -1
     while(cont):
         cont = False
         args = None
 
-        print("player sends: "+ sc)
+        #print("player sends: "+ sc)
         c = parse_coord(sc)
         if c is "pass":
             c = -1
@@ -361,29 +364,31 @@ def execute(cmd, prog, sim):
             cont = True
             args = "err2"
         if(cont):
-            print("checker returns " + args)
+            #print("checker returns " + args)
 
             # -- program --
-            proc = sp.Popen([cmd, prog, args], stdout=sp.PIPE)
-            sc = proc.stdout.read()
+            procs = sp.Popen([cmd, prog, args], stdout=sp.PIPE)
+            sc = procs.stdout.read()
+            sys.stdout.flush()
 
             # -- manual input to check rule violation --
-           # sc = raw_input()
-
+            # sc = raw_input()
     return c
+
 def check(cmd, prog, sim, timeout):
     start = time.time()
 
     pool = ThreadPool(processes=1)
     a = pool.apply_async(execute, (cmd,prog,sim,))
-    c = None
+    c = -1
     try:
         c = a.get(timeout=timeout)
     except TimeoutError:
-        print("timeout")
+        pass
+        #print("timeout")
 
     end = time.time()
-    print("Elapsed: " + str(end - start))
+    #print("Elapsed: " + str(end - start))
 
     return c
 
@@ -430,12 +435,12 @@ def game_io(cmd, prog, timeout):
     win = None
 
     while True:
-        print_pos(sim.pos, sys.stdout, owner_map)
+        # print_pos(sim.pos, sys.stdout, owner_map)
         # print(sim.pos.board)
         # board = parse_board(sim.pos.board)
         # print_board(board)
         index = sim.pos.n % 2
-        print("player", index + 1)
+        #print("player", index + 1)
 
         # check timeout
         c = check(cmd[index], prog[index], sim, timeout)
@@ -446,7 +451,7 @@ def game_io(cmd, prog, timeout):
 
             # --- check if next player cannot move (game is done)---
             if isDone(sim):
-                print_pos(sim.pos, sys.stdout, owner_map)
+                #print_pos(sim.pos, sys.stdout, owner_map)
                 res = sim.pos.area()
                 WriteArea(file, res, index)
 
@@ -459,13 +464,13 @@ def game_io(cmd, prog, timeout):
                 break
         else:
             # Pass move
-            print("\n PASS")
+            #print("\n PASS")
 
             passes[index] += 1
             sim = Simulation(pos=sim.pos.pass_move())
 
             # --- if any passes 3 times ---
-            print(passes)
+            #print(passes)
             if passes[index] >= 3:
                 res = sim.pos.area()
                 WriteArea(file, res, index)
@@ -478,34 +483,31 @@ def game_io(cmd, prog, timeout):
                     win = 0
                 break
 
-        # # --- calculate area won ---
-        # res = sim.pos.Area()
-        # if index == 0:
-        #     score[0] = res[0]
-        #     score[1] = res[1]
-        # else:
-        #     score[1] = res[0]
-        #     score[0] = res[1]
-        # print("player 1 score = ", score[0], "| player 2 score = ", score[1])
 
-
-
-
-    if win == 0:
-        print("player 1 wins")
-    elif win == 1:
-        print("player 2 wins")
-    else:
-        print("draw")
+    # if win == 0:
+    #     print("player 1 wins")
+    # elif win == 1:
+    #     print("player 2 wins")
+    # else:
+    #     print("draw")
 
     # if(win < 2):
     #     file.write("player "+ str(win + 1)+ " wins")
     # else:
     #     file.write("draw")
+
     file.write("\n\n")
 
-    print("Done")
-    #print("Thanks For Playing")
+    try:
+        sys.stdout.close()
+    except:
+        pass
+    try:
+        sys.stderr.close()
+    except:
+        pass
+
+    return
 
 
 
@@ -520,3 +522,5 @@ file = open("results.txt", "a")
 file.write(temp1 + " vs " + temp2 + "\n")
 
 game_io(cmd, prog, 1)
+
+sys.exit(0)

@@ -1,16 +1,25 @@
 import os
 import subprocess as sp
+import sys
 
 
 cmd = "python"
-prog = "C:\\Users\\VR-03\\PycharmProjects\\AICompetition_NUTSHELL\\main.py"
-urls = ["C:\\Users\\VR-03\\PycharmProjects\\AICompetition_NUTSHELL\\test.py", "C:\\Users\\VR-03\\PycharmProjects\\AICompetition_NUTSHELL\\test.py"]
+cwd = os.getcwd()
+prog = cwd + "\\main.py"
+urls = ["\\Dummy\\test.py", "\\Dummy\\test.py", "\\Dummy\\test.py"]
 
+start = 0
 
-for i in range(0, len(urls)):
+for i in range(start, len(urls)):
     for j in range(i+1, len(urls)):
-        print(urls[i], j)
-        proc = sp.Popen([cmd, prog, cmd, urls[i], urls[j]], stdout=sp.PIPE)
+        print(i,j)
+        print(urls[i] + " vs " + urls[j])
+        proc = sp.Popen([cmd, prog, cmd, cwd + urls[i], cwd + urls[j]])
+        # while proc.poll() is None:
+        #     l = proc.stdout.readline().strip()  # This blocks until it receives a newline.
+        #     print l.strip()
+        #     sys.stdout.flush()
+        #
+        # print proc.stdout.read()
+        # sys.stdout.flush()
         proc.wait()
-        #sc = proc.stdout.read()
-        #print(sc)
