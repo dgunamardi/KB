@@ -17,7 +17,7 @@ import os
 
 
 # variables
-N = 3
+N = 9
 W = N + 2
 empty = "\n".join([(N+1)*' '] + N*[' '+N*'.'] + [(N+2)*' '])
 colstr = 'ABCDEFGHIJKLMNOPQRST'
@@ -384,8 +384,8 @@ def check(cmd, prog, sim, timeout):
     try:
         c = a.get(timeout=timeout)
     except TimeoutError:
+        print("timeout")
         pass
-        #print("timeout")
 
     end = time.time()
     #print("Elapsed: " + str(end - start))
@@ -435,12 +435,12 @@ def game_io(cmd, prog, timeout):
     win = None
 
     while True:
-        # print_pos(sim.pos, sys.stdout, owner_map)
+        print_pos(sim.pos, sys.stdout, owner_map)
         # print(sim.pos.board)
-        # board = parse_board(sim.pos.board)
+        board = parse_board(sim.pos.board)
         # print_board(board)
         index = sim.pos.n % 2
-        #print("player", index + 1)
+        print("player", index + 1)
 
         # check timeout
         c = check(cmd[index], prog[index], sim, timeout)
@@ -464,22 +464,22 @@ def game_io(cmd, prog, timeout):
                 break
         else:
             # Pass move
-            #print("\n PASS")
+            print("\n PASS")
 
             passes[index] += 1
             sim = Simulation(pos=sim.pos.pass_move())
 
             # --- if any passes 3 times ---
-            #print(passes)
+            print(passes)
             if passes[index] >= 3:
                 res = sim.pos.area()
                 WriteArea(file, res, index)
 
                 if index % 2 == 0:
-                    file.write("p2 passes\n")
+                    file.write("p1 passes\n")
                     win = 1
                 else:
-                    file.write("p1 passes\n")
+                    file.write("p2 passes\n")
                     win = 0
                 break
 
@@ -495,7 +495,8 @@ def game_io(cmd, prog, timeout):
     #     file.write("player "+ str(win + 1)+ " wins")
     # else:
     #     file.write("draw")
-
+    file.write("Pass Count: " + str(passes) + "\n")
+    file.write(str(sim.pos.n) + "moves\n")
     file.write("\n\n")
 
     try:
@@ -521,6 +522,6 @@ prog = [temp1, temp2]
 file = open("results.txt", "a")
 file.write(temp1 + " vs " + temp2 + "\n")
 
-game_io(cmd, prog, 1)
+game_io(cmd, prog, 10)
 
 sys.exit(0)
