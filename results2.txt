@@ -1035,13 +1035,6 @@ Pass Count: [2, 3]
 6moves
 
 
-D:\Data\CompetitionRunner\Players\iRobot\iRobot.py vs D:\Data\CompetitionRunner\Players\RE\re.py
-p1 0
-p2 0
-p1 passes
-Pass Count: [3, 0]
-5moves
-
 
 D:\Data\CompetitionRunner\Players\iRobot\iRobot.py vs D:\Data\CompetitionRunner\Players\Terminator\terminator.py
 p1 0
@@ -1059,27 +1052,146 @@ Pass Count: [2, 3]
 6moves
 
 
-D:\Data\CompetitionRunner\Players\RE\re.py vs D:\Data\CompetitionRunner\Players\Terminator\terminator.py
-p1 0
-p2 0
-p2 passes
-Pass Count: [0, 3]
-6moves
-
-
-D:\Data\CompetitionRunner\Players\RE\re.py vs D:\Data\CompetitionRunner\Players\Tron\tron.py
-p1 0
-p2 0
-p2 passes
-Pass Count: [0, 3]
-6moves
-
-
 D:\Data\CompetitionRunner\Players\Terminator\terminator.py vs D:\Data\CompetitionRunner\Players\Tron\tron.py
 p1 0
 p2 0
 p1 passes
 Pass Count: [3, 2]
 5moves
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Her\go-block.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Her\go-block.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Jarvis\jarvisgo.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Baymax\baymax.py
+p1 5
+p2 3
+p2 passes
+Pass Count: [1, 3]
+12 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Biljo\biljo.py
+p1 11
+p2 31
+p1 passes
+Pass Count: [3, 1]
+45 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Doraemon\doraemon.py
+p1 5
+p2 3
+p2 passes
+Pass Count: [1, 3]
+12 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\ExMachina\exmachina.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\ImitationGame\imitationgame.py
+p1 19
+p2 22
+p1 passes
+Pass Count: [3, 1]
+43 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Ironman\ironman.py
+p1 11
+p2 7
+p2 passes
+Pass Count: [1, 3]
+22 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\MetalSlug\SlugGo.py
+p1 5
+p2 19
+p1 passes
+Pass Count: [3, 1]
+27 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Singularity\singularity.py
+p1 5
+p2 5
+p1 passes
+Pass Count: [3, 2]
+15 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Spongebob\ai.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\StarWars\Chess_Go.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\WallE\walle.py
+p1 25
+p2 13
+p2 passes
+Pass Count: [1, 3]
+46 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\iRobot\iRobot.py
+p1 11
+p2 9
+p2 passes
+Pass Count: [1, 3]
+24 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Terminator\terminator.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
+
+
+D:\Data\CompetitionRunner\Players\RE\bukanre.py vs D:\Data\CompetitionRunner\Players\Tron\tron.py
+p1 0
+p2 0
+p2 passes
+Pass Count: [0, 3]
+6 moves
 
 
