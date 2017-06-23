@@ -13,7 +13,7 @@ N = 9
 W = N + 2
 empty = "\n".join([(N + 1) * ' '] + N * [' ' + N * '.'] + [(N + 2) * ' '])
 colstr = 'ABCDEFGHIJKLMNOPQRST'
-MAX_GAME_LEN = N * N * 2
+MAX_GAME_LEN = N * N
 
 N_SIMS = 1400
 RAVE_EQUIV = 3500
